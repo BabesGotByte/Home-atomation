@@ -23,19 +23,7 @@ float pretemp = 0;
 // Initialize DHT sensor.
 DHT dht1(DHTPin1, DHTTYPE);
 
-// Temporary variables
 static char celsiusTemp1[7];
-static char fahrenheitTemp1[7];
-static char humidityTemp1[7];
-
-
-int sensor1 = 13;
-int countemp = 0;
-int total1= 0;
-
-//void setup() {
-    
-//}
 
 void CheckWiFiConnectivity()
   {
@@ -84,15 +72,13 @@ void query(){
   else if(stat == 1)
     s = "{\"fans\" : false,";
   
-  s += String("\"location_id\": \"Room #5040 CC-3\"") + String(",");
+  s += String("\"location_id\": \"GH1 Roomno 202b\"") + String(",");
   s += String("\"temperature\":") + String(temp) +String("}");
   server.send(200,"text/plain",s);
   
 }
 
-// only runs once on boot
 void setup() {
-  // Initializing serial port for debugging purposes
   Serial.begin(115200);
   delay(10);
   pinMode(sensor1, INPUT); // declare sensor as input
@@ -113,7 +99,7 @@ void setup() {
   Serial.println("!--- Connecting To " + WiFi.SSID() + " ---!");
 
   CheckWiFiConnectivity();
-  Serial.println("connected to pepsimaster");
+  Serial.println("connectedr");
   Serial.println(WiFi.localIP());
   server.on("/", handleRoot);
   server.on("/fan/0",ontwo);
